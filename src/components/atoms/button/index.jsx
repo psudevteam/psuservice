@@ -21,10 +21,10 @@ export const Button = ({ loading = false, variant = "primary", size = "md", ...p
     },
   );
 
-  const className = `${(buttonVariant, buttonSize)}`;
+  const className = [...buttonVariant, ...buttonSize].join("");
 
   props.href && (
-    <Link to={props.href}>
+    <Link role="link" to={props.href}>
       <button role="button" {...props} className={className}>
         {loading ? <LoadingSpinner /> : props.children}
       </button>
