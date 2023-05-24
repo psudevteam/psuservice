@@ -1,0 +1,7 @@
+version: "3"
+services:
+  boilerplate:
+    build: ./
+    container_name: "react-auth-full-flow"
+    ports:
+      - "80:8080"
