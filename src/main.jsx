@@ -1,8 +1,8 @@
-import { StrictMode, Fragment } from 'react'
-import ReactDOM from 'react-dom/client'
+import { StrictMode, Fragment } from "react";
+import ReactDOM from "react-dom/client";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-      <Fragment />
+    <Fragment />
   </StrictMode>,
-)
+);

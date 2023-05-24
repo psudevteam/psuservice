@@ -4,11 +4,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -37,11 +33,10 @@
     "react/react-in-jsx-scope": "off",
     "no-use-before-define": "off",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
-    "react/prop-types": [0],
+    "react/prop-types": "off",
     "no-invalid-regexp": "off",
     "import/namespace": "off",
     "import/named": "off"
