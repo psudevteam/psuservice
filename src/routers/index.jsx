@@ -1,5 +1,6 @@
 import { Button } from "@/components";
 import { createBrowserRouter } from "react-router-dom";
+import { TestPage } from "@/pages";
 
 export const Router = createBrowserRouter([
   {
@@ -9,5 +10,9 @@ export const Router = createBrowserRouter([
         <Button>Login</Button>
       </section>
     ),
+  },
+  {
+    path: "/test",
+    element: <TestPage />,
   },
 ]);
