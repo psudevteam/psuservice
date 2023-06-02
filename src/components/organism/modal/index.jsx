@@ -13,8 +13,8 @@ export const Modal = ({
   return (
     showModal &&
     createPortal(
-      <div className="fixed top-0 left-0 right-0 flex items-center justify-center bg-gray-800 bg-opacity-50 bg-blur-md z-50  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div className="relative w-full max-w-2xl max-h-full">
+      <div className="fixed top-0 left-0 right-0 flex items-center justify-center bg-gray-800 bg-opacity-40 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen">
+        <div className="relative w-full max-w-2xl max-h-full backdrop-blur-sm">
           {/* Modal content */}
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* Modal header */}
@@ -22,7 +22,7 @@ export const Modal = ({
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6">
                 {modalTitle}
               </h3>
-              <Button onClick={onClose} variant="icon-close">
+              <Button onClick={onClose} variant="icon-close" size="sm">
                 <IconClose />
                 <span className="sr-only">Close modal</span>
               </Button>
