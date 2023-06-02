@@ -16,7 +16,7 @@ export const HeroModule = () => {
           value and drive technology growth.
         </p>
         <div className="w-[30vw] mt-5 md:w-[20vw] lg:w-[15vw]">
-          <Button size="sm primary">Learn more</Button>
+          <Button size="sm">Learn more</Button>
         </div>
       </div>
     </>
