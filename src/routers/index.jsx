@@ -1,15 +1,11 @@
-import { Button } from "@/components";
 import { createBrowserRouter } from "react-router-dom";
 import { TestPage } from "@/pages";
+import { Home } from "@/pages";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <section className="flex items-center">
-        <Button>Login</Button>
-      </section>
-    ),
+    element: <Home />,
   },
   {
     path: "/test",

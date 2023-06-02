@@ -7,5 +7,5 @@ import { Router } from ".";
 
 test("full app rendering/navigating", async () => {
   render(<RouterProvider router={Router} />);
-  expect(screen.getByText(/Login/i)).toBeInTheDocument();
+  expect(screen.getByText(/Home/i)).toBeInTheDocument();
 });
