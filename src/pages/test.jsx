@@ -12,8 +12,6 @@ export const TestPage = () => {
     console.log("Accept");
   };
 
-  const titleModal = <div>Judul Modal</div>;
-
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-auto">
@@ -28,9 +26,9 @@ export const TestPage = () => {
           onClose={onClose}
           onSubmit={onSubmit}
           showModal={showModal}
-          buttonOne={"Setuju"}
-          buttonTwo={"Tidak setuju"}
-          modalTitle={titleModal}
+          submitText="Setuju"
+          closeText="Tidak setuju"
+          modalTitle="Ini judul"
         >
           <p>Ini content</p>
         </Modal>
