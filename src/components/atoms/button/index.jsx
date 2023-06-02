@@ -3,10 +3,10 @@ import { LoadingSpinner } from "../loading";
 import { Link } from "react-router-dom";
 
 export const Button = ({ loading = false, variant = "primary", size = "md", ...props }) => {
-  const buttonSize = clsx("w-full h-auto hover:opacity-75", {
-    "p-2 text-sm": size === "sm",
-    "p-4 text-md": size === "md",
-    "p-6 text-lg": size === "lg",
+  const buttonSize = clsx("w-full text-center hover:opacity-75", {
+    "p-2 h-10 text-sm": size === "sm",
+    "p-4 h-14 text-md": size === "md",
+    "p-6 h-18 text-lg": size === "lg",
   });
 
   const buttonVariant = clsx(
