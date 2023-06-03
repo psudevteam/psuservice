@@ -1,10 +1,7 @@
-import { Button, Modal, TextField, SelectField } from "@/components";
-import { Fragment, Suspense, useEffect } from "react";
-import { LoadingCrud } from "./loading";
-import { TableHead, TableBody } from "./section";
-import { ErrorCrud } from "./error";
-import { ErrorBoundary } from "react-error-boundary";
+import { Button, Modal, TextField, SelectField, Table } from "@/components";
+import { Fragment, useEffect, useMemo } from "react";
 import {
+  useCrud,
   useCrudCreate,
   useCrudDelete,
   useCrudModal,
@@ -21,6 +18,8 @@ export const CrudModule = () => {
   const { getModal, setModal } = useCrudModal();
   const { getEditData, setEditData } = useEditData();
 
+  const { data } = useCrud();
+
   const { control, reset, handleSubmit } = useForm({
     defaultValues: {
       nama: "",
@@ -28,6 +27,15 @@ export const CrudModule = () => {
       prodi: "",
       semester: "",
       wa: "",
+    },
+  });
+
+  const { control: searchControl } = useForm({
+    defaultValues: {
+      search: "",
+      filter_semester: "",
+      filter_kelas: "",
+      filter_prodi: "",
     },
   });
 
@@ -80,6 +88,71 @@ export const CrudModule = () => {
   useEffect(() => {
     (getEdit || getDelete) && reset(getEditData);
   }, [getEdit, getEditData, getDelete, reset]);
+
+  const columns = useMemo(
+    () => [
+      {
+        header: () => "No",
+        cell: ({ row }) => row.index + 1,
+        accessorKey: "no",
+      },
+      {
+        header: () => "Nama",
+        cell: (row) => row.renderValue(),
+        accessorKey: "nama",
+      },
+      {
+        header: () => "Kelas",
+        cell: (row) => row.renderValue(),
+        accessorKey: "kelas",
+      },
+      {
+        header: () => "Prodi",
+        cell: (row) => row.renderValue(),
+        accessorKey: "prodi",
+      },
+      {
+        header: () => "Semester",
+        cell: (row) => row.renderValue(),
+        accessorKey: "semester",
+      },
+      {
+        header: () => "No Whatsapp",
+        cell: (row) => row.renderValue(),
+        accessorKey: "wa",
+      },
+      {
+        header: "Aksi",
+        cell: ({ row }) => {
+          const onEdit = (data) => {
+            setModal(true);
+            setEdit(true);
+            setEditData(data);
+          };
+
+          const onDelete = (data) => {
+            setModal(true);
+            setDelete(true);
+            setEdit(false);
+            setEditData(data);
+          };
+          return (
+            <div className="flex gap-x-2">
+              <span onClick={() => onEdit(row.original)} className="text-green-400">
+                Edit
+              </span>
+              <span>|</span>
+              <span onClick={() => onDelete(row.original)} className="text-red-400">
+                Hapus
+              </span>
+            </div>
+          );
+        },
+        accessorKey: "aksi",
+      },
+    ],
+    [setDelete, setEdit, setEditData, setModal],
+  );
 
   return (
     <div className="flex gap-y-4 flex-col overflow-x-auto w-full px-10 justify-center">
@@ -177,20 +250,79 @@ export const CrudModule = () => {
         </section>
       </Modal>
 
-      <div className="flex w-fit gap-x-4">
-        <Button onClick={onAddData} size="sm">
-          Tambah Data
-        </Button>
+      <div className="flex w-full items-center justify-between gap-x-4">
+        <div className="flex w-fit">
+          <Button onClick={onAddData} size="sm">
+            Tambah Data
+          </Button>
+        </div>
+        <div className="flex w-auto gap-x-3">
+          <TextField
+            control={searchControl}
+            size="sm"
+            type="text"
+            name="search"
+            placeholder="Cari Data..."
+            append="Anjay"
+          />
+          <SelectField
+            size="sm"
+            type="text"
+            name="filter_semester"
+            control={searchControl}
+            placeholder="Filter Semester"
+            options={Array(14)
+              .fill()
+              .map((_, semester) => ({
+                label: semester + 1,
+                value: semester + 1,
+              }))}
+          />
+          <SelectField
+            size="sm"
+            type="text"
+            name="filter_prodi"
+            control={searchControl}
+            placeholder="Filter Prodi"
+            options={[
+              {
+                label: "Informatika",
+                value: "Informatika",
+              },
+              {
+                label: "Bahasa Inggris",
+                value: "Bahasa Inggris",
+              },
+              {
+                label: "Bahasa Indonesia",
+                value: "Bahasa Indonesia",
+              },
+            ]}
+          />
+          <SelectField
+            size="sm"
+            type="text"
+            name="filter_kelas"
+            control={control}
+            placeholder="Filter Kelas"
+            options={[
+              {
+                label: "A1",
+                value: "A1",
+              },
+              {
+                label: "A2",
+                value: "A2",
+              },
+              {
+                label: "A3",
+                value: "A3",
+              },
+            ]}
+          />
+        </div>
       </div>
-
-      <table className="w-full text-sm text-left items-center justify-center shadow-md border rounded-xl text-gray-500">
-        <TableHead />
-        <ErrorBoundary fallback={<ErrorCrud />}>
-          <Suspense fallback={<LoadingCrud />}>
-            <TableBody />
-          </Suspense>
-        </ErrorBoundary>
-      </table>
+      <Table data={data?.data} columns={columns} />
     </div>
   );
 };
