@@ -5,10 +5,8 @@ const { HeroModule } = lazily(() => import("@/modules"));
 
 export const HomeModule = () => {
   return (
-    <>
-      <Suspense fallback={"Loading hero..."}>
-        <HeroModule />
-      </Suspense>
-    </>
+    <Suspense fallback={"Loading hero..."}>
+      <HeroModule />
+    </Suspense>
   );
 };
