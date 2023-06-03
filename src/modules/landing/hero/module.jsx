@@ -2,7 +2,7 @@ import { Button } from "@/components";
 
 export const HeroModule = () => {
   return (
-    <main className="flex col">
+    <main className="flex flex-col">
       <h1 className="text-center font-bold text-[2.5rem] mt-[10vh] text-blue-500 md:text-[3rem]">
         PSU
         <span className="block text-[1.5rem] text-slate-800 mt-2 md:text-[2rem]">
