@@ -1,0 +1,33 @@
+name: Flow Test
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn lint
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn build
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn test
