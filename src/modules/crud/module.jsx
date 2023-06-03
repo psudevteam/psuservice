@@ -18,7 +18,7 @@ export const CrudModule = () => {
   const { getModal, setModal } = useCrudModal();
   const { getEditData, setEditData } = useEditData();
 
-  const { data } = useCrud();
+  const { data, isLoading } = useCrud();
 
   const { control, reset, handleSubmit } = useForm({
     defaultValues: {
@@ -322,7 +322,7 @@ export const CrudModule = () => {
           />
         </div>
       </div>
-      <Table data={data?.data} columns={columns} />
+      <Table data={data?.data} columns={columns} loading={isLoading} />
     </div>
   );
 };
