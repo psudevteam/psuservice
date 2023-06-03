@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useController } from "react-hook-form";
 import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { BsChevronDown } from "react-icons/bs";
 
 export const SelectField = (props) => {
   const { field } = useController({
@@ -19,7 +20,7 @@ export const SelectField = (props) => {
     "p-6 placeholder:text-lg text-lg": props.size === "lg",
   });
 
-  const inputStatus = clsx("border rounded-lg focus:ring-none focus:outline-none appearence-none", {
+  const inputStatus = clsx("border rounded-lg focus:ring-none focus:outline-none appearance-none", {
     "bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 ":
       props.status === "none" || !props.status,
     "bg-green-50 border-green-300 text-green-900 placeholder:text-green-500 ":
@@ -60,13 +61,14 @@ export const SelectField = (props) => {
         </label>
         {props.required && <strong className="text-red-600">*</strong>}
       </div>
-      <div className="flex flex-col gap-y-1">
+      <div className="flex relative flex-col gap-y-1">
+        <BsChevronDown size={20} className="absolute top-5 right-5" />
         <select className={inputClassName} {...{ ...props, ...field }}>
-          <option disabled value="#">
-            {props.defaultValue}
+          <option selected className={inputClassName} disabled value="#">
+            {props.placeholder}
           </option>
           {props?.options?.map((option, key) => (
-            <option value={option.value} key={key}>
+            <option className={inputClassName} value={option.value} key={key}>
               {option.label}
             </option>
           ))}

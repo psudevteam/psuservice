@@ -19,7 +19,7 @@ export const TextField = (props) => {
     "p-6 placeholder:text-lg text-lg": props.size === "lg",
   });
 
-  const inputStatus = clsx("border rounded-lg focus:ring-none focus:outline-none appearence-none", {
+  const inputStatus = clsx("border rounded-lg focus:ring-none focus:outline-none appearance-none", {
     "bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 ":
       props.status === "none" || !props.status,
     "bg-green-50 border-green-300 text-green-900 placeholder:text-green-500 ":

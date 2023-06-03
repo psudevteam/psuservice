@@ -1,4 +1,5 @@
-import { Button, Modal } from "@/components";
+import { Modal } from "@/components";
+import { CrudModule } from "@/modules";
 import { useState } from "react";
 
 export const TestPage = () => {
@@ -13,26 +14,8 @@ export const TestPage = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div className="w-auto">
-        <Button
-          onClick={() => {
-            setShowModal(!showModal);
-          }}
-        >
-          Open Modal
-        </Button>
-        <Modal
-          onClose={onClose}
-          onSubmit={onSubmit}
-          showModal={showModal}
-          submitText="Setuju"
-          closeText="Tidak setuju"
-          modalTitle="Ini judul"
-        >
-          <p>Ini content</p>
-        </Modal>
-      </div>
+    <div className="flex h-screen w-full justify-center items-center">
+      <CrudModule />
     </div>
   );
 };
