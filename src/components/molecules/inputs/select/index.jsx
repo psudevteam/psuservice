@@ -20,15 +20,18 @@ export const SelectField = (props) => {
     "p-6 placeholder:text-lg text-lg": props.size === "lg",
   });
 
-  const inputStatus = clsx("border rounded-lg focus:ring-none focus:outline-none appearance-none", {
-    "bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 ":
-      props.status === "none" || !props.status,
-    "bg-green-50 border-green-300 text-green-900 placeholder:text-green-500 ":
-      props.status === "success",
-    "bg-red-50 border-red-500 text-red-900 placeholder:text-red-500 ": props.status === "error",
-    "bg-orange-50 border-orange-500 text-orange-900 placeholder:text-orange-500 ":
-      props.status === "warning",
-  });
+  const inputStatus = clsx(
+    "border pr-10 rounded-lg focus:ring-none focus:outline-none appearance-none",
+    {
+      "bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 ":
+        props.status === "none" || !props.status,
+      "bg-green-50 border-green-300 text-green-900 placeholder:text-green-500 ":
+        props.status === "success",
+      "bg-red-50 border-red-500 text-red-900 placeholder:text-red-500 ": props.status === "error",
+      "bg-orange-50 border-orange-500 text-orange-900 placeholder:text-orange-500 ":
+        props.status === "warning",
+    },
+  );
 
   const messageSize = clsx("font-regular flex gap-x-1 items-center", {
     "text-xs ": props.size === "sm" || !props.size,
@@ -53,6 +56,11 @@ export const SelectField = (props) => {
 
   const messageClassName = [...messageStatus, messageSize].join("");
 
+  const chevronClassName = clsx("absolute", {
+    "top-5 right-5": props.size === "md",
+    "top-3 right-2": props.size === "sm",
+  });
+
   return (
     <section className="flex flex-col gap-y-2">
       <div className="flex gap-x-1">
@@ -62,9 +70,12 @@ export const SelectField = (props) => {
         {props.required && <strong className="text-red-600">*</strong>}
       </div>
       <div className="flex relative flex-col gap-y-1">
-        <BsChevronDown size={20} className="absolute top-5 right-5" />
+        <BsChevronDown
+          size={props.size === "md" || props.size === "lg" ? 20 : 16}
+          className={chevronClassName}
+        />
         <select className={inputClassName} {...{ ...props, ...field }}>
-          <option selected className={inputClassName} disabled value="#">
+          <option selected className={inputClassName} disabled>
             {props.placeholder}
           </option>
           {props?.options?.map((option, key) => (
