@@ -1,9 +1,10 @@
 import { LoadingSpinner } from "@/components/atoms";
 import { useReactTable, flexRender, getCoreRowModel } from "@tanstack/react-table";
 
-export const Table = (props) => {
+export const Table = ({ data = [], columns, loading = false }) => {
   const table = useReactTable({
-    ...props,
+    data,
+    columns,
     getCoreRowModel: getCoreRowModel(),
   });
   return (
@@ -34,13 +35,13 @@ export const Table = (props) => {
           ))}
         </tbody>
       </table>
-      {props?.data?.length === 0 && (
+      {data?.length === 0 && !loading && (
         <div className="flex w-full items-center justify-center p-8">
           <span className="text-1xl text-gray-700 font-semibold">Data tidak ditemukan</span>
         </div>
       )}
 
-      {props?.loading && (
+      {loading && (
         <div className="flex w-full items-center justify-center p-8">
           <LoadingSpinner />
         </div>
