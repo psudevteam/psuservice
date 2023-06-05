@@ -12,7 +12,7 @@ const root = createRoot(htmlElement);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
+      suspense: false,
     },
   },
 });
