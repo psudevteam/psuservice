@@ -19,8 +19,3 @@ export const dataEdit = atom({
   key: "data-edit",
   default: {},
 });
-
-export const refetchData = atom({
-  key: "refetch-data",
-  default: false,
-});

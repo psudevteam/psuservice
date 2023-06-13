@@ -1,10 +1,11 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import { Router } from "./routers";
 import { QueryClient, QueryClientProvider, Hydrate } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
 import "tailwindcss/tailwind.css";
+import { LoadingSpinner } from "./components";
 
 const htmlElement = document.getElementById("root");
 const root = createRoot(htmlElement);
@@ -22,7 +23,15 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <Hydrate>
         <RecoilRoot>
-          <RouterProvider router={Router} />
+          <Suspense
+            fallback={
+              <main className="w-full h-screen justify-center items-center flex">
+                <LoadingSpinner />
+              </main>
+            }
+          >
+            <RouterProvider router={Router} fallbackElement={<LoadingSpinner />} />
+          </Suspense>
         </RecoilRoot>
       </Hydrate>
     </QueryClientProvider>
