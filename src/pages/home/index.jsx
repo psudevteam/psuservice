@@ -1,12 +1,7 @@
-import { MainLayout } from "@/layouts";
-import React from "react";
-import { Navbar } from "@/components";
-import { HomeModule } from "@/modules";
+import { lazily } from "react-lazily";
+
+const { HomeModule } = lazily(() => import("@/modules"));
+
 export const Home = () => {
-  return (
-    <MainLayout>
-      <Navbar />
-      <HomeModule />
-    </MainLayout>
-  );
+  return <HomeModule />;
 };
