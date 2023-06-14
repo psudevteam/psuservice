@@ -21,7 +21,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
     "@mobily/ts-belt": "^3.13.1",
-    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query": "^4.29.13",
     "@tanstack/react-table": "^8.9.1",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
