@@ -46,7 +46,7 @@
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "@vitest/coverage-c8": "^0.32.0",
+    "@vitest/coverage-c8": "^0.32.2",
     "autoprefixer": "^10.4.14",
     "core-js-pure": "^3.31.0",
     "eslint": "^8.43.0",
